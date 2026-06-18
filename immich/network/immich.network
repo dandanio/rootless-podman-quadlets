@@ -1,0 +1,4 @@
+[Network]
+NetworkName=immich.network
+IPv6=false
+Internal=false
