@@ -66,7 +66,7 @@ _If the directory already exists, that’s fine._
 
 Navigate to the service directory you want, then copy the `.container` file:
 
-    cp ~/this-repo/adguard/adguard.container ~/.config/containers/systemd/
+    cp ~/rootless-podman-quadlets/vert/vert.container ~/.config/containers/systemd/
 
 **Edit the file with `nano` (without `sudo` – it’s your user dir)**:
 
