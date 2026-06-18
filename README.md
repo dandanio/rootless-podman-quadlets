@@ -1,7 +1,7 @@
 Podman Rootless Containers
 ==========================
 
-A collection of Podman rootless container stacks, tested and running on **Ubuntu 26.04** with **Podman 5.7.0**.  
+A collection of Podman my rootless container stacks, tested and running on **Ubuntu 26.04** with **Podman 5.7.0**, with optional security additions that do not break the container.  
 All services use Quadlet files (`~/.config/containers/systemd/`) so they integrate natively with systemd and start automatically under your user.
 
 * * *
@@ -12,7 +12,7 @@ Why this repo?
 *   **Rootless by default** – every container runs without any root privileges, even during setup.
 *   **Arguably safer than Docker** – Podman’s daemonless architecture and user‑namespace isolation reduce the attack surface. No privileged `dockerd` socket, no “root equivalent” container escapes.
 *   **Quadlet for systemd** – no need for `podman-compose`; just drop a `.container` file and enable with `systemctl --user`.
-*   Podman is gaining traction fast, and rootless mode is finally production‑ready for most workloads.
+*   Podman is gaining traction, and rootless mode is finally production‑ready for most workloads.
 
 * * *
 
@@ -22,7 +22,7 @@ Repository structure
 Each directory below contains a **Quadlet `.container` file** and optional notes.
 
 *   Hardening options (like `no-new-privileges`, `read-only` rootfs, `security-opt`) are **commented out** by default – uncomment what you need.
-*   Temporary drives (`tmpfs`, `:Z` volume flags) are also commented out for clarity.
+*   Temporary drives (`tmpfs`, `:Z` volume flags) are also commented out for clarity but should be strongly considered with containers with frequent HDD/SSD read/writes.
 *   All volumes map into `~/containers/<service>/` by default – no system directories touched.
    
 * * *
@@ -71,18 +71,19 @@ Quadlet automatically creates a systemd service from the `.container` file:
 
 Then pull the image (optional but gives you immediate feedback):
 
-    podman pull <image-name>   # or let systemd pull it on start
+    podman pull <image-name>   
+    # or let systemd pull it on start
 
 ### 6\. Enable and start the container
 
-    systemctl --user enable --now adguard.service
+    systemctl --user start vert
 
 Check status:
 
-    systemctl --user status adguard
+    systemctl --user status vert
     podman ps
 
-The service will survive reboots and log to the journal (`journalctl --user -u adguard`).
+The service will survive reboots and log to the journal (`journalctl --user -u vert` or `podman logs vert`).
 
 * * *
 
@@ -92,8 +93,8 @@ Saving / backing up your containers
 Your persistent data lives in the volumes you defined (e.g., `~/containers/adguard/`).  
 To back up a container’s state:
 
-    podman stop adguard
-    tar -czf adguard-backup.tar.gz ~/containers/adguard/
+    podman stop vert
+    tar -czf vert ~/containers/adguard/
 
 The Quadlet file itself is your “infrastructure as code” – keep it safe in this git repo.
 
@@ -122,4 +123,4 @@ Useful resources
 
 * * *
 
-_These configurations were tested on Ubuntu 26.04 with Podman 5.7.0 (apt installed). They should work on any recent systemd distro with a Podman version ≥ 4.4, but your mileage may vary._
+_These configurations were tested on Ubuntu 26.04 with Podman 5.7.0 (apt installed) on an Intel NUC 13i7 with 64 gb memory and a 2 tb NVME SSD. They should work on any recent systemd distro with a Podman version ≥ 4.4, but your mileage may vary._
