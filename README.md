@@ -40,13 +40,21 @@ Quick start (for any container in this repo)
 
 No Docker or `docker-compose` needed. Podman includes all the tools.
 
-### 2\. Set up the Quadlet directory
+### 2\. Enable linger for your user _(critical for autostart at boot)_
+
+This allows your user’s systemd session to run even when you are not logged in, so containers start automatically at system boot.
+
+    sudo loginctl enable-linger $USER
+
+Verify with `loginctl show-user $USER | grep Linger` – should show `Linger=yes`.
+
+### 3\. Set up the Quadlet directory
 
     mkdir -p ~/.config/containers/systemd
 
 _If the directory already exists, that’s fine._
 
-### 3\. Grab a container definition
+### 4\. Grab a container definition
 
 Navigate to the service directory you want, then copy the `.container` file:
 
@@ -58,7 +66,7 @@ Navigate to the service directory you want, then copy the `.container` file:
 
 Adjust volumes, environment variables, or uncomment hardening options as needed.
 
-### 4\. Pull the image and generate the systemd unit
+### 5\. Pull the image and generate the systemd unit
 
 Quadlet automatically creates a systemd service from the `.container` file:
 
@@ -68,7 +76,7 @@ Then pull the image (optional but gives you immediate feedback):
 
     podman pull <image-name>   # or let systemd pull it on start
 
-### 5\. Enable and start the container
+### 6\. Enable and start the container
 
     systemctl --user enable --now adguard.service
 
@@ -95,6 +103,8 @@ Common troubleshooting
 
 *   **`systemctl --user` commands fail with `Failed to connect to bus`**  
     Make sure your user session is running `systemd --user`. Usually it’s automatic on login, but if not: `systemctl --user start default.target`.
+*   **Linger is not enabled / containers don’t start at boot**  
+    Run `sudo loginctl enable-linger $USER` to allow the user manager to run at boot without a login. This is mandatory for unattended servers.
 *   **Ports below 1024**  
     Rootless Podman can’t bind to privileged ports by default. Add `net.ipv4.ip_unprivileged_port_start=80` to `/etc/sysctl.d/99-rootless.conf` and reboot, or use a high port with a reverse proxy.
 *   **`WARN[0000] Failed to load cached network config`**  
