@@ -1,4 +1,4 @@
-# Tdarr Remote Node
+# [Tdarr](https://github.com/haveagitgat/tdarr) Remote Node
 
 A separate transcoding node that connects to a Tdarr server.
 
