@@ -1,4 +1,4 @@
-# Stirling‑PDF
+# [Stirling‑PDF](https://github.com/Stirling-Tools/stirling-pdf)
 
 Powerful PDF manipulation tool with a web UI.
 
