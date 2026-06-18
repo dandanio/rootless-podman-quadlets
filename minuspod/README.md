@@ -1,4 +1,4 @@
-MinusPod – Podcast Ad Remover
+[MinusPod](https://github.com/ttlequals0/minuspod) – Podcast Ad Remover
 =============================
 
 Self‑hosted, rootless deployment of MinusPod using Podman Quadlets. The engine can use **OpenRouter** (free tier) for ad‑removal or an optional local **OpenVINO Whisper** transcriber.
