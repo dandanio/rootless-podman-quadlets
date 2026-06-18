@@ -6,7 +6,7 @@ Self‑hosted, rootless deployment of MinusPod using Podman Quadlets. The engine
 Components
 ----------
 
-*   **MinusPod Engine** – web UI, API, and ad‑removal logic.
+*   **MinusPod CPU Engine** – web UI, API, and ad‑removal logic. This is for non-Nvidia image.
 *   **OpenVINO Model Server** (optional) – local Whisper transcription for completely offline processing. Shares the engine’s network namespace.
 
 Access
