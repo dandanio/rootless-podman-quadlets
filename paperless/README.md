@@ -1,4 +1,4 @@
-Paperless NGX
+[Paperless NGX](https://github.com/paperless-ngx/paperless-ngx)
 =============
 
 Self‑hosted document manager with Redis sharing the webserver’s network namespace.
