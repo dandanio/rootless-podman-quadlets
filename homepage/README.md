@@ -1,4 +1,4 @@
-# Homepage Dashboard
+# [Homepage](https://github.com/gethomepage/homepage) Dashboard
 
 A highly customizable application dashboard.
 
