@@ -11,13 +11,13 @@ Network=ente.network
 Image=ghcr.io/ente-io/web
 
 # Ports – Auth and Accounts (3003, 3001)
-PublishPort=3401:3001   # Accounts
-PublishPort=3403:3003   # Auth
+PublishPort=3401:3001
+PublishPort=3403:3003
 
 # Environment
 Environment=TZ=America/New_York
 # Replace with your server’s actual address
-Environment=ENTE_API_ORIGIN=http://pihole1.lan:8085
+Environment=ENTE_API_ORIGIN=http://ip-to-your-server:8085
 Environment=ENTE_ACCOUNTS_ORIGIN=http://ente-web:3401
 Environment=ENTE_AUTH_ORIGIN=http://ente-web:3403
 Environment=ENTE_ALBUMS_ORIGIN=http://ente-web:3402
