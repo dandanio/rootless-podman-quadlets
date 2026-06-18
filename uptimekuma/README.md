@@ -1,4 +1,4 @@
-# Uptime Kuma
+# [Uptime Kuma](https://github.com/louislam/uptime-kuma)
 
 Fancy self‑hosted monitoring tool.
 
