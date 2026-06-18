@@ -1,0 +1,42 @@
+[Unit]
+Description=Omni-tools container
+After=podman-user-wait-network-online.service
+Wants=podman-user-wait-network-online.service
+
+[Container]
+Image=docker.io/iib0011/omni-tools:latest
+ContainerName=omnitools
+HostName=omnitools
+AutoUpdate=registry
+
+# Ports
+PublishPort=8999:8999
+
+# Environment
+Environment=TZ=America/New_York
+
+# Volumes (config files)
+Volume=%h/omnitools/default.conf:/etc/nginx/conf.d/default.conf
+Volume=%h/omnitools/.htpasswd:/etc/nginx/.htpasswd
+
+# ---------- Hardening (uncomment to lock down the container) ----------
+#NoNewPrivileges=true
+#ReadOnly=true
+#DropCapability=all
+#AddCapability=CAP_NET_BIND_SERVICE
+#AddCapability=CAP_SETUID
+#AddCapability=CAP_SETGID
+#AddCapability=CAP_CHOWN
+#AddCapability=CAP_DAC_OVERRIDE
+
+# ---------- Temporary filesystems (required if ReadOnly=true) ----------
+#Mount=type=tmpfs,destination=/tmp,tmpfs-size=32M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/var/log/nginx,tmpfs-size=32M,tmpfs-mode=1777
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
