@@ -1,7 +1,7 @@
 # Calibre‑GUI + Calibre‑Web
 
 Two‑container Calibre stack:  
-- **Calibre GUI** (web‑based desktop via KasmVNC) for library management.  
+- **Calibre GUI** web‑based desktop for library management.  
 - **Calibre‑Web** for a modern reading and browsing frontend.
 
 ## Access
