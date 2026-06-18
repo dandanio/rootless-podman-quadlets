@@ -10,9 +10,9 @@ Image=ghcr.io/haveagitgat/tdarr:latest
 AutoUpdate=registry
 
 # Ports
-PublishPort=8265:8265   # Web UI
-PublishPort=8266:8266   # Server
-PublishPort=8267:8267   # Node
+PublishPort=8265:8265
+PublishPort=8266:8266
+PublishPort=8267:8267
 
 # GPU device (Intel QuickSync / VAAPI)
 AddDevice=/dev/dri:/dev/dri:rw
