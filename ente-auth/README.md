@@ -1,4 +1,4 @@
-Ente Auth (Self‑hosted)
+[Ente Auth](https://github.com/ente-io/ente) (Self‑hosted)
 =======================
 
 A self‑hosted Ente Auth stack consisting of:
