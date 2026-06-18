@@ -1,4 +1,4 @@
-# Vert
+# [Vert](https://github.com/VERT-sh/vert)
 
 Self‑hosted file converter with a clean interface.
 
