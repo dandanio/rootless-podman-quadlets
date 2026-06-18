@@ -70,7 +70,7 @@ Navigate to the service directory you want, then copy the `.container` file:
 
 **Edit the file with `nano` (without `sudo` – it’s your user dir)**:
 
-    nano ~/.config/containers/systemd/adguard.container
+    nano ~/.config/containers/systemd/vert.container
 
 Adjust volumes, environment variables, or uncomment hardening options as needed.
 
