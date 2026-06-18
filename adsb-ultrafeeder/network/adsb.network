@@ -1,0 +1,4 @@
+[Network]
+NetworkName=adsb
+Driver=bridge
+IPv6=false
