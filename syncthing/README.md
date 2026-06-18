@@ -1,4 +1,4 @@
-# Syncthing
+# [Syncthing](https://github.com/syncthing/syncthing)
 
 Continuous file synchronization between devices.
 
