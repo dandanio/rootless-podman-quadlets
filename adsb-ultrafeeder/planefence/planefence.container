@@ -1,0 +1,38 @@
+[Unit]
+Description=PlaneFence ADSB Analytics
+After=podman-user-wait-network-online.service ultrafeeder.service
+Wants=podman-user-wait-network-online.service
+BindsTo=ultrafeeder.service
+
+[Container]
+HostName=planefence
+ContainerName=planefence
+Image=ghcr.io/sdr-enthusiasts/docker-planefence:latest
+AutoUpdate=registry
+Network=adsb
+
+PublishPort=8088:80
+PublishPort=9999:9999
+
+Environment=FEEDER_LAT=YOUR_LATITUDE
+Environment=FEEDER_LON=YOUR_LONGITUDE
+Environment=FEEDER_ALT=YOUR_ALTITUDE
+Environment=TZ=America/New_York
+Environment=PF_IGNORE_SETUP_ERRORS=yes
+Environment=LOGLEVEL=INFO
+
+Volume=%h/planefence/config:/usr/share/planefence/persist
+Volume=%h/planefence/html:/usr/share/planefence/html
+
+# ---------- Hardening ----------
+#NoNewPrivileges=true
+
+# ---------- tmpfs ----------
+#Mount=type=tmpfs,destination=/run,tmpfs-size=512M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/tmp,tmpfs-size=128M,tmpfs-mode=1777
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
