@@ -1,5 +1,5 @@
 [Unit]
-Description=MinusPod Podcast Ad Remover Engine
+Description=MinusPod Intel CPU Podcast Ad Remover Engine
 After=network-online.target
 
 [Container]
