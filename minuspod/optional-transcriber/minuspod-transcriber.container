@@ -1,0 +1,43 @@
+[Unit]
+Description=OpenVINO Model Server (Whisper API) – Optional
+Wants=podman-user-wait-network-online.service
+After=podman-user-wait-network-online.service
+Requires=minuspod.service
+After=minuspod.service
+
+[Container]
+Image=docker.io/openvino/model_server:latest-gpu
+ContainerName=minuspod-transcriber
+HostName=minuspod-transcriber
+
+# Share the network namespace with the main MinusPod container
+Network=container:minuspod
+
+# Run as root inside the container (required for hardware access); the group‑keep annotation preserves the host's render/video groups.
+User=0:0
+Annotation=run.oci.keep_original_groups=1
+
+# GPU device (Intel / VAAPI)
+#AddDevice=/dev/dri:/dev/dri
+
+# Model volume – you must provide a config.json and the model files
+Volume=%h/openvino/models:/models:rw
+Exec=--config_path /models/config.json --rest_port 8001
+
+Environment=TZ=America/New_York
+AutoUpdate=registry
+
+# ---------- Hardening ----------
+#NoNewPrivileges=yes
+
+# ---------- Resource limits ----------
+#CPUQuota=300%
+#MemoryMax=4G
+#MemoryReservation=2G
+
+[Service]
+Restart=on-failure
+ExecStartPre=/usr/bin/sleep 5
+
+[Install]
+WantedBy=default.target
