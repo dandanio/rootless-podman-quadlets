@@ -28,9 +28,7 @@ AddDevice=/dev/dri:/dev/dri:rw
 Volume=%h/plex/config:/config
 Volume=%h/Videos/tvshows:/data/tvshows:rw
 Volume=%h/Videos/Movies:/data/movies:rw
-Volume=%h/Videos/abbysmovies:/data/abbys:rw
-Volume=%h/Videos/othervideos:/data/other:rw
-Volume=%h/Videos/music:/data/music:rw
+Volume=%h/Music/music:/data/music:rw
 
 # ---------- Hardening (uncomment to lock down the container) ----------
 # The tmpfs mounts are required for transcoding and runtime; enable them with ReadOnly=false or keep commented if you don't need a read‑only root.
