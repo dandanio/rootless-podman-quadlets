@@ -1,0 +1,39 @@
+[Unit]
+Description=Paperless Redis Broker
+After=podman-user-wait-network-online.service paperless-webserver.service
+BindsTo=paperless-webserver.service
+
+[Container]
+Image=docker.io/valkey/valkey:9-alpine
+ContainerName=paperless-redis
+HostName=paperless-redis
+
+# Share the network namespace with the webserver (accessible at localhost:6379)
+Network=container:paperless-webserver
+AutoUpdate=registry
+
+# Run as the container's default non‑root user (UID 999)
+User=999
+UserNS=keep-id
+
+# Disable persistence (all data in memory)
+Exec=valkey-server --save "" --appendonly no
+
+# ---------- SELinux ----------
+#SecurityLabelDisable=true
+
+# ---------- Hardening (uncomment to lock down) ----------
+#ReadOnly=true
+#NoNewPrivileges=true
+#DropCapability=all
+
+# ---------- Temporary filesystems (required if ReadOnly=true) ----------
+#Mount=type=tmpfs,destination=/data,tmpfs-size=128m,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/tmp,tmpfs-size=64m,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/run,tmpfs-size=16m,tmpfs-mode=1777
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
