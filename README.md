@@ -52,7 +52,7 @@ This repo uses separate `.env` files for secrets (passwords, API keys). **Never 
 
 After you copy an `.env.example` to `.env` and fill it in, lock it down immediately so that if a container is compromised, the secrets remain unreadable:
 
-    chmod 600 ~/.config/containers/systemd/*.env
+    sudo chmod 600 ~/.config/containers/systemd/*.env
 
 This ensures only your user can read the files — not the container’s processes, and not other users on the system.
 
