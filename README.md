@@ -4,6 +4,8 @@ Podman Rootless Containers
 A collection of Podman rootless container stacks, tested and running on **Ubuntu 26.04** with **Podman 5.7.0**.  
 All services use Quadlet files (`~/.config/containers/systemd/`) so they integrate natively with systemd and start automatically under your user.
 
+* * *
+
 Why this repo?
 --------------
 
@@ -11,6 +13,8 @@ Why this repo?
 *   **Arguably safer than Docker** – Podman’s daemonless architecture and user‑namespace isolation reduce the attack surface. No privileged `dockerd` socket, no “root equivalent” container escapes.
 *   **Quadlet for systemd** – no need for `podman-compose`; just drop a `.container` file and enable with `systemctl --user`.
 *   Podman is gaining traction fast, and rootless mode is finally production‑ready for most workloads.
+
+* * *
 
 Repository structure
 --------------------
@@ -20,15 +24,8 @@ Each directory below contains a **Quadlet `.container` file** and optional notes
 *   Hardening options (like `no-new-privileges`, `read-only` rootfs, `security-opt`) are **commented out** by default – uncomment what you need.
 *   Temporary drives (`tmpfs`, `:Z` volume flags) are also commented out for clarity.
 *   All volumes map into `~/containers/<service>/` by default – no system directories touched.
-
-    .
-    ├── README.md
-    ├── adguard/
-    ├── nginx-proxy-manager/
-    ├── paperless-ngx/
-    ├── vaultwarden/
-    └── ... (more to come)
-    
+   
+* * *
 
 Quick start (for any container in this repo)
 --------------------------------------------
@@ -87,6 +84,8 @@ Check status:
 
 The service will survive reboots and log to the journal (`journalctl --user -u adguard`).
 
+* * *
+
 Saving / backing up your containers
 -----------------------------------
 
@@ -97,6 +96,8 @@ To back up a container’s state:
     tar -czf adguard-backup.tar.gz ~/containers/adguard/
 
 The Quadlet file itself is your “infrastructure as code” – keep it safe in this git repo.
+
+* * *
 
 Common troubleshooting
 ----------------------
@@ -109,6 +110,8 @@ Common troubleshooting
     Rootless Podman can’t bind to privileged ports by default. Add `net.ipv4.ip_unprivileged_port_start=80` to `/etc/sysctl.d/99-rootless.conf` and reboot, or use a high port with a reverse proxy.
 *   **`WARN[0000] Failed to load cached network config`**  
     Harmless; happens when networks are recreated. Ignore unless connectivity breaks.
+
+* * *
 
 Useful resources
 ----------------
