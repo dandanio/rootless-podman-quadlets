@@ -20,6 +20,7 @@ Environment=VERSION=docker
 # Ports
 PublishPort=32400:32400
 # PublishPort=8181:8181
+#if using tautulli
 
 # GPU device for hardware transcoding (Intel QuickSync / VAAPI)
 AddDevice=/dev/dri:/dev/dri:rw
