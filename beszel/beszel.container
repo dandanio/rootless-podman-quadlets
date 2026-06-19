@@ -1,0 +1,26 @@
+[Unit]
+Description=Beszel Hub Container
+After=podman-user-wait-network-online.service
+Wants=podman-user-wait-network-online.service
+
+[Container]
+Image=docker.io/henrygd/beszel
+ContainerName=beszel
+HostName=beszel
+Environment=APP_URL=http://localhost:8090
+PublishPort=8090:8090
+Volume=%h/beszel_data:/beszel_data
+Environment=TZ=America/New_York
+#Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+#NoNewPrivileges=yes
+#ReadOnly=yes
+#DropCapability=all
+#if using ReadOnly will need to uncomment Mount=
+
+[Service]
+Restart=unless-stopped
+
+[Install]
+WantedBy=default.target
