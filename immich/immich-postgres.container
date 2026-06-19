@@ -15,6 +15,7 @@ Environment=POSTGRES_DB=immich
 Environment=POSTGRES_INITDB_ARGS=--data-checksums
 # Secrets loaded from env file
 EnvironmentFile=%h/.config/containers/systemd/immich-postgres.env
+Environment=TZ=America/New_York
 
 # Persistent storage
 Volume=%h/immich-app/postgres:/var/lib/postgresql
@@ -42,7 +43,7 @@ ShmSize=2G
 #Mount=type=tmpfs,destination=/var/run/postgresql,tmpfs-size=32M,tmpfs-mode=1777
 
 # ---------- Resource limits ----------
-#PodmanArgs=--memory=4G
+#Memory=4G
 #CPUShares=256
 
 [Service]
