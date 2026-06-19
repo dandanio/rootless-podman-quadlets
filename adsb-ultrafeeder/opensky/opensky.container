@@ -8,6 +8,7 @@ HostName=opensky
 ContainerName=opensky
 Image=ghcr.io/sdr-enthusiasts/docker-opensky-network:latest
 Network=adsb
+AutoUpdate=registry
 
 Environment=TZ=America/New_York
 Environment=BEASTHOST=ultrafeeder
