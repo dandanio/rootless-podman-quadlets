@@ -21,8 +21,8 @@ AddDevice=/dev/dri:/dev/dri:rw
 Environment=TZ=America/New_York
 Environment=serverPort=8266
 Environment=internalNode=true
-Environment=nodeName=pihole1
-Environment=Tdarr_Server_URL=http://pihole1.lan:8266
+Environment=nodeName=your-nodename
+Environment=Tdarr_Server_URL=http://your-server:8266
 Environment=webUIPort=8265
 Environment=inContainer=true
 Environment=serverDualStack=true
