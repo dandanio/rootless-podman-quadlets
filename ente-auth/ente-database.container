@@ -14,6 +14,7 @@ Image=docker.io/library/postgres:18
 # Environment – database name (non‑secret) + secrets from env file
 Environment=POSTGRES_DB=ente_db
 EnvironmentFile=%h/.config/containers/systemd/ente-database.env
+Environment=TZ=America/New_York
 
 # Persistent storage
 Volume=%h/my-ente/db-data:/var/lib/postgresql
@@ -37,7 +38,7 @@ LogOpt=max-size=10mb
 #Mount=type=tmpfs,destination=/var/run/postgresql,tmpfs-size=32M,tmpfs-mode=1777
 
 # ---------- Resource limits ----------
-#PodmanArgs=--memory=4G
+#Memory=4G
 
 [Service]
 Restart=on-failure
