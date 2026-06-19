@@ -10,6 +10,7 @@ Image=ghcr.io/sdr-enthusiasts/docker-dump978:latest
 Network=adsb
 PublishPort=30980:80
 PublishPort=30978:30978
+AutoUpdate=registry
 
 # USB device for SDR
 AddDevice=/dev/bus/usb:/dev/bus/usb
