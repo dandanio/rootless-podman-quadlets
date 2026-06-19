@@ -8,6 +8,7 @@ HostName=planewatch
 ContainerName=planewatch
 Image=ghcr.io/plane-watch/docker-plane-watch:latest
 Network=adsb
+AutoUpdate=registry
 
 Environment=TZ=America/New_York
 Environment=BEASTHOST=ultrafeeder
