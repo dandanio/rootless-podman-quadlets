@@ -1,0 +1,25 @@
+[Unit]
+Description=Beszel Agent Container
+After=podman-user-wait-network-online.service
+Wants=podman-user-wait-network-online.service
+
+[Container]
+Image=docker.io/henrygd/beszel-agent
+ContainerName=beszel-agent
+Environment=TZ=America/New_York
+AutoUpdate=registry
+Volume=%t/podman/podman.sock:/var/run/docker.sock:ro
+Environment=HUB_URL=http://your-beszel-server:8090
+Environment=KEY=your-ssh-key
+Network=host
+Environment=PORT=45876
+#NoNewPrivileges=yes
+#Mount=type=tmpfs,destination=/tmp,tmpfs-size=64M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+#Mount=type=tmpfs,destination=/var/log,tmpfs-size=16M,tmpfs-mode=1777
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
