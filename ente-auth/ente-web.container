@@ -1,7 +1,6 @@
 [Unit]
 Description=Ente Web (Auth Frontend)
 After=podman-user-wait-network-online.service ente-network.service ente-museum.service
-BindsTo=ente-museum.service
 
 [Container]
 HostName=ente-web
