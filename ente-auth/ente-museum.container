@@ -47,10 +47,11 @@ LogOpt=max-size=10mb
 #Mount=type=tmpfs,destination=/var/cache,tmpfs-size=256M,tmpfs-mode=1777
 
 # ---------- Resource limits ----------
-#PodmanArgs=--memory=4G --memory-reservation=1G
+#Memory=4G
 
 [Service]
 Restart=on-failure
+#MemoryLow=1G
 
 [Install]
 WantedBy=default.target
