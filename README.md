@@ -101,11 +101,11 @@ The service will survive reboots and log to the journal (`journalctl --user -u v
 Saving / backing up your containers
 -----------------------------------
 
-Your persistent data lives in the volumes you defined (e.g., `~/containers/adguard/`).  
+Your persistent data lives in the volumes you defined (e.g., `~/containers/vert/`).  
 To back up a container’s state:
 
     podman stop vert
-    tar -czf vert ~/containers/adguard/
+    tar -czf vert ~/containers/vert/
 
 The Quadlet file itself is your “infrastructure as code” – keep it safe in this git repo.
 
