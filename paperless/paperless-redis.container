@@ -11,6 +11,7 @@ HostName=paperless-redis
 # Share the network namespace with the webserver (accessible at localhost:6379)
 Network=container:paperless-webserver
 AutoUpdate=registry
+Environment=TZ=America/New_York
 
 # Run as the container's default non‑root user (UID 999)
 User=999
