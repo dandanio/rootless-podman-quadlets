@@ -30,7 +30,7 @@ Environment=TZ=America/New_York
 #Mount=type=tmpfs,destination=/var/cache,tmpfs-size=1G,tmpfs-mode=1777
 
 # ---------- Resource limits ----------
-#PodmanArgs=--memory=10G
+#Memory=10G
 #CPUAccounting=yes
 #CPUShares=512
 #CPUQuota=800%
