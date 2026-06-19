@@ -15,6 +15,7 @@ PublishPort=8000:8000
 
 # Environment
 Environment=PAPERLESS_TIME_ZONE=America/New_York
+Environment=TZ=America/New_York
 # Replace YOUR_HOSTNAME with your server's hostname or IP
 Environment=PAPERLESS_CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://YOUR_HOSTNAME:8000
 Environment=PAPERLESS_URL=http://YOUR_HOSTNAME:8000
