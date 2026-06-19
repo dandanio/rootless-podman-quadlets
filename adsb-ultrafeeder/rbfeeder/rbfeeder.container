@@ -8,6 +8,7 @@ HostName=rbfeeder
 ContainerName=rbfeeder
 Image=ghcr.io/sdr-enthusiasts/docker-airnavradar:latest
 Network=adsb
+AutoUpdate=registry
 
 Environment=TZ=America/New_York
 Environment=BEASTHOST=ultrafeeder
