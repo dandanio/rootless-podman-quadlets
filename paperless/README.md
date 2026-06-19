@@ -19,8 +19,6 @@ How networking works
 
 Redis uses `Network=container:paperless-webserver`. It appears to the webserver at `localhost:6379`. No separate port is published for Redis.
 
-The Redis container is tightly coupled: it `BindsTo=paperless-webserver.service` and will stop when the webserver stops.
-
 Setup
 -----
 
