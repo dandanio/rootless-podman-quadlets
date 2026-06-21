@@ -12,16 +12,10 @@ ContainerName=ultrafeeder
 Image=ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest
 AutoUpdate=registry
 Network=adsb
-
-# Ports
 PublishPort=8081:8081
 PublishPort=30005:30005
 PublishPort=30003:30003
-
-# Environment – loaded from file for secrets
 EnvironmentFile=%h/.config/containers/systemd/ultrafeeder.env
-
-# Core settings (safe to keep here)
 Environment=TZ=America/New_York
 Environment=TAR1090_NGINX_PORT=8081
 Environment=LOGLEVEL=error
@@ -34,29 +28,18 @@ Environment=TAR1090_PLANECOUNTINTITLE=true
 Environment=TAR1090_RANGERINGS=true
 Environment=TAR1090_RANGERINGSDISTANCES=50,100,150,200
 Environment=TAR1090_FLIGHTAWARELINKS=true
-
-# Reads from Airspy stats (if airspy container is used)
 Environment=ENABLE_AIRSPY=true
 Environment=AIRSPY_STATS_FILE=/run/airspy_adsb/stats.json
 Volume=airspy_stats:/run/airspy_adsb:ro
-
-# Define where data comes from
-# If you don't have Airspy/dump978, change READSB_NET_CONNECTOR accordingly
 Environment=READSB_NET_CONNECTOR=airspy,30005,beast_in;dump978,30978,uat_in
-
-# Volumes
 Volume=/opt/adsb/ultrafeeder/globe_history:/var/globe_history
 Volume=/opt/adsb/ultrafeeder/graphs1090:/var/lib/collectd
 Volume=/proc/diskstats:/proc/diskstats:ro
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=true
-
-# ---------- Temporary filesystems ----------
-#Mount=type=tmpfs,destination=/run,tmpfs-size=256M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=128M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=32M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/cache/lighttpd,tmpfs-size=64M,tmpfs-mode=1777
+NoNewPrivileges=true
+Mount=type=tmpfs,destination=/run,tmpfs-size=256M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=128M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=32M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache/lighttpd,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
