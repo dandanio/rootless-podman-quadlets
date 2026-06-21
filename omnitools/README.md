@@ -8,6 +8,3 @@ Collection of simple web tools (nginx‑based).
 ## Configuration
 Place your custom `default.conf` and `.htpasswd` (basic auth) files in `~/omnitools/`.  
 The container mounts them directly.
-
-## Hardening
-Lock down by uncommenting the `NoNewPrivileges`, `ReadOnly`, capability controls, and all `tmpfs` mounts.
