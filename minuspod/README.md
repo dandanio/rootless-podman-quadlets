@@ -46,11 +46,6 @@ How the transcriber works
 
 The OpenVINO model server uses `Network=container:minuspod`, so it appears to the engine as `localhost:8001`. You do not need to publish any extra ports.
 
-Hardening
----------
-
-All hardening directives are commented out. Uncomment the blocks labeled “Hardening” and the tmpfs mounts to lock down each container.
-
 Resource limits
 ---------------
 
