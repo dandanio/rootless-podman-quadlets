@@ -8,16 +8,10 @@ ContainerName=tdarr
 HostName=tdarr
 Image=ghcr.io/haveagitgat/tdarr:latest
 AutoUpdate=registry
-
-# Ports
 PublishPort=8265:8265
 PublishPort=8266:8266
 PublishPort=8267:8267
-
-# GPU device (Intel QuickSync / VAAPI)
 AddDevice=/dev/dri:/dev/dri:rw
-
-# Environment
 Environment=TZ=America/New_York
 Environment=serverPort=8266
 Environment=internalNode=true
@@ -27,24 +21,16 @@ Environment=webUIPort=8265
 Environment=inContainer=true
 Environment=serverDualStack=true
 Environment=ffmpegVersion=7
-
-# Volumes
-Volume=%h/jellyfin/tdarr/server:/app/server
-Volume=%h/jellyfin/tdarr/logs:/app/logs
+Volume=%h/tdarr/server:/app/server
+Volume=%h/tdarr/logs:/app/logs
 Volume=%h/Videos/Movies:/media/movies:rw
 Volume=%h/Videos/tvshows:/media/tvshows:rw
-Volume=%h/Videos/abbysmovies:/media/abbysmovies:rw
-Volume=%h/Videos/othervideos:/media/othervideos:rw
 Volume=/temp:/temp
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=true
-
-# ---------- Temporary filesystems ----------
-#Tmpfs=/app/unmappedNodeCache:size=1G,rw,mode=1777
-#Tmpfs=/tmp:size=1G,rw,mode=1777
-#Tmpfs=/run:size=64M,rw,mode=1777
-#Tmpfs=/app/configs:size=32M,rw,mode=1777
+NoNewPrivileges=true
+Tmpfs=/app/unmappedNodeCache:size=1G,rw,mode=1777
+Tmpfs=/tmp:size=1G,rw,mode=1777
+Tmpfs=/run:size=64M,rw,mode=1777
+Tmpfs=/app/configs:size=32M,rw,mode=1777
 
 [Service]
 Restart=on-failure
