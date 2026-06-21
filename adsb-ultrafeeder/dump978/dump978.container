@@ -11,27 +11,18 @@ Network=adsb
 PublishPort=30980:80
 PublishPort=30978:30978
 AutoUpdate=registry
-
-# USB device for SDR
 AddDevice=/dev/bus/usb:/dev/bus/usb
-
 Environment=DUMP978_MSG_MONITOR_RESTART_WHEN_STALE=false
 Environment=DUMP978_RTLSDR_DEVICE=00000001
 Environment=DUMP978_DEVICE_TYPE=rtlsdr
 Environment=DUMP978_SDR_GAIN=autogain
 Environment=TZ=America/New_York
 Environment=WAIT_FOR_DATA_TIMEOUT=0
-
-# Location (must be set)
 EnvironmentFile=%h/.config/containers/systemd/dump978.env
-
 Volume=/opt/adsb/dump978:/var/globe_history
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-# ---------- Temporary filesystems ----------
-#Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
