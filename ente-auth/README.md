@@ -53,12 +53,6 @@ Configuration details
 *   `NEXT_PUBLIC_ENTE_ENDPOINT` is the URL your clients will use (must be HTTPS).
 *   The web container exposes ports 3401 and 3403. If you run multiple instances, adjust the host ports.
 
-Hardening
----------
-
-All security directives are commented out. Uncomment the blocks labeled “Hardening” and the corresponding tmpfs mounts to lock down the containers.  
-Resource limits (memory) are also commented out; uncomment and adjust to your system.
-
 Volumes
 -------
 
