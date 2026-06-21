@@ -10,13 +10,7 @@ Central web console and historical database.
 #### Access
 
 *   After starting the container, open: `http://<your-ip>:8090`
-
-#### Hardening
-
-*   The Hub is an excellent candidate for tight security wrapping. The Quadlet file includes active configurations for `NoNewPrivileges=yes`, `ReadOnly=yes`, and `DropCapability=all`.
-*   To support the read-only root filesystem, memory-backed paths (`tmpfs`) are pre-configured for `/tmp`, `/run`, and `/var/log`.
-*   Persistent metrics are safely isolated to your mapped `%h/beszel_data` volume.
-
+  
 * * *
 
 ### Beszel Agent (Collector)
