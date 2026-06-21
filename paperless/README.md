@@ -35,16 +35,6 @@ Document consumption
 
 Place files in the `~/paperless/consume` directory and they will be processed automatically. You can also use the web UI to upload documents.
 
-Hardening
----------
-
-All hardening directives are commented out. Uncomment the blocks labeled “Hardening” and the corresponding tmpfs mounts to lock down the containers. The tmpfs mounts are required if you set `ReadOnly=true`.
-
-Resource limits
----------------
-
-The webserver’s memory and CPU limits are commented out. Uncomment and adjust them according to your system’s capacity.
-
 Volumes
 -------
 
