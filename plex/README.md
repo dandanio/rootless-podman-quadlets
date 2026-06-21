@@ -24,10 +24,6 @@ Tautulli shares Plex’s network namespace, so it can access Plex at `localhost`
 `AddDevice=/dev/dri` enables Intel QuickSync / VAAPI.  
 If you have an NVIDIA GPU, replace it with the appropriate CDI device.
 
-## Hardening
-All hardening directives are **commented out**. Uncomment the blocks marked “Hardening” and the corresponding tmpfs mounts if you want a read‑only root filesystem and reduced capabilities.  
-The tmpfs sizes are tuned for transcoding and Plex’s runtime needs.
-
 ## First run
 1. Start Plex: `systemctl --user enable --now plex.service`
 2. Complete the Plex setup wizard at `http://<ip>:32400`.
