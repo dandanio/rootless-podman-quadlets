@@ -15,6 +15,3 @@ A commented `--memory=8G` is also available if you need to cap the whole contain
 
 ## Volumes
 All persistent data is kept under `~/stirlingpdf/`. Custom OCR training data, configs, and pipelines can be placed there.
-
-## Hardening
-Uncomment the entire hardening block (capabilities + tmpfs) to run a locked‑down container.
