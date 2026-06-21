@@ -8,48 +8,33 @@ Image=docker.io/stirlingtools/stirling-pdf:latest-fat
 ContainerName=stirlingpdf
 HostName=stirlingpdf
 AutoUpdate=registry
-
-# Ports
 PublishPort=8180:8080
-
-# Environment
 Environment=TZ=America/New_York
 Environment=SECURITY_ENABLELOGIN=true
 Environment=DOCKER_ENABLE_SECURITY=true
 Environment=INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
 Environment=LANGS=en_US
-# Java memory limits (tune to your system)
 Environment=JAVA_TOOL_OPTIONS="-Xms512m -Xmx4g"
-
-# Volumes
 Volume=%h/stirlingpdf/trainingData:/usr/share/tessdata
 Volume=%h/stirlingpdf/extraConfigs:/configs
 Volume=%h/stirlingpdf/customFiles:/customFiles
 Volume=%h/stirlingpdf/logs:/logs
 Volume=%h/stirlingpdf/pipeline:/pipeline
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-# If you enable ReadOnly, you must also uncomment the tmpfs mounts below.
-# Stirling-PDF requires certain capabilities to operate correctly.
-#NoNewPrivileges=yes
-#DropCapability=all
-#AddCapability=CAP_SETUID
-#AddCapability=CAP_SETGID
-#AddCapability=CAP_CHOWN
-#AddCapability=CAP_DAC_OVERRIDE
-#AddCapability=CAP_FOWNER
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=2G,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/run,tmpfs-size=128M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
-
-# ---------- Resource limits ----------
-#Memory=8G
+NoNewPrivileges=yes
+DropCapability=all
+AddCapability=CAP_SETUID
+AddCapability=CAP_SETGID
+AddCapability=CAP_CHOWN
+AddCapability=CAP_DAC_OVERRIDE
+AddCapability=CAP_FOWNER
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=2G,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=128M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+Memory=8G
 
 [Service]
 Restart=on-failure
-#MemoryLow=2G
+MemoryLow=2G
 
 [Install]
 WantedBy=default.target
