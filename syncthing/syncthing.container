@@ -8,45 +8,29 @@ Image=docker.io/syncthing/syncthing:latest
 ContainerName=syncthing
 HostName=syncthing
 AutoUpdate=registry
-
-# Keep host user ID for file ownership (essential for your home folder access)
 UserNS=keep-id
-
-# Ports
 PublishPort=8384:8384/tcp
 PublishPort=22000:22000/tcp
 PublishPort=22000:22000/udp
 PublishPort=21027:21027/udp
-
-# Label (optional, can be used to override the hostname)
 Label=io.podman.annotations.podman.opts="--hostname=syncthing-pihole1"
-
-# Volumes
 Volume=%h/syncthing/config:/var/syncthing/config
 Volume=%h:%h
 Volume=/mnt/sda1/backupfrom40/:/mnt/sda1/backupfrom40/
-
-# Log rotation
 LogDriver=k8s-file
 LogOpt=max-size=10m
 LogOpt=max-file=3
-
-# Environment
 Environment=TZ=America/New_York
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=true
-#ReadOnly=true
-#DropCapability=all
-#AddCapability=CAP_CHOWN
-#AddCapability=CAP_FOWNER
-#AddCapability=CAP_SETGID
-#AddCapability=CAP_SETUID
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/syncthing/.config,tmpfs-size=128M,tmpfs-mode=1777
+NoNewPrivileges=true
+ReadOnly=true
+DropCapability=all
+AddCapability=CAP_CHOWN
+AddCapability=CAP_FOWNER
+AddCapability=CAP_SETGID
+AddCapability=CAP_SETUID
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/syncthing/.config,tmpfs-size=128M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
