@@ -14,6 +14,3 @@ Adjust the volume mappings if your home path differs.
 
 ## Firewall
 Ensure ports `22000/tcp+udp` and `21027/udp` are open for device discovery and transfers.
-
-## Hardening
-All security directives are commented out. Uncomment them along with the tmpfs mounts.
