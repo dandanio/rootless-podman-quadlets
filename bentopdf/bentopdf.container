@@ -8,27 +8,17 @@ Image=docker.io/bentopdf/bentopdf:latest
 ContainerName=bentopdf
 HostName=bentopdf
 AutoUpdate=registry
-
-# Ports – host:container (internal service listens on 8080)
 PublishPort=8084:8080
-
-# Environment
 Environment=TZ=America/New_York
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-# BentoPDF is stateless, so ReadOnly=true works well.
-# If you enable ReadOnly, you must also uncomment the tmpfs mounts below.
-#NoNewPrivileges=yes
-#ReadOnly=true
-#DropCapability=all
-#AddCapability=CAP_NET_BIND_SERVICE
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/etc/nginx/tmp,tmpfs-size=1M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+NoNewPrivileges=yes
+ReadOnly=true
+DropCapability=all
+AddCapability=CAP_NET_BIND_SERVICE
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/etc/nginx/tmp,tmpfs-size=1M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
