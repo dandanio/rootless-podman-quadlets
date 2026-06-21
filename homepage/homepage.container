@@ -8,46 +8,27 @@ Image=ghcr.io/gethomepage/homepage:latest
 ContainerName=homepage
 HostName=homepage
 AutoUpdate=registry
-
-# Log rotation
 LogDriver=k8s-file
 LogOpt=max-size=10m
 LogOpt=max-file=3
-
-# User mapping – keeps file ownership as the host user (UID 1000, GID 1000)
 UserNS=keep-id
 Environment=PUID=1000
 Environment=PGID=1000
-
-# Ports
 PublishPort=3000:3000
-
-# Environment
 Environment=TZ=America/New_York
-# Set your allowed hosts – uncomment and edit
-#Environment=HOMEPAGE_ALLOWED_HOSTS=192.168.1.39:3000,39.rickinmarks.com,pihole1.lan:3000
-
-# Volumes
+#Environment=HOMEPAGE_ALLOWED_HOSTS=x.x.x.x
 Volume=%h/homepage/config:/app/config
 Volume=%h/homepage/icons:/app/public/icons
-
-# Docker socket for integration (optional)
 Environment=DOCKER_HOST=unix:///var/run/docker.sock
 Volume=%t/podman/podman.sock:/var/run/docker.sock:ro
-# Disable SELinux label separation for the socket mount (required if SELinux is enforcing)
 SecurityLabelDisable=true
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-# If you enable ReadOnly, you must also uncomment the tmpfs mounts below.
-#NoNewPrivileges=yes
-#ReadOnly=true
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=128M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=32M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/cache,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/app/.next/server/pages,tmpfs-size=64M,tmpfs-mode=1777
+NoNewPrivileges=yes
+ReadOnly=true
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=128M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=32M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/app/.next/server/pages,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
