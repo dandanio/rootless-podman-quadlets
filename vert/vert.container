@@ -8,16 +8,10 @@ Image=ghcr.io/vert-sh/vert:latest
 ContainerName=vert
 HostName=vert
 AutoUpdate=registry
-
-# Log rotation
 LogDriver=k8s-file
 LogOpt=max-size=10m
 LogOpt=max-file=3
-
-# Ports
 PublishPort=3123:80
-
-# Environment
 Environment=TZ=America/New_York
 Environment=PUB_HOSTNAME=pihole1.lan:3123
 Environment=PUB_PLAUSIBLE_URL=
@@ -26,20 +20,16 @@ Environment=PUB_DISABLE_ALL_EXTERNAL_REQUESTS=false
 Environment=PUB_VERTD_URL=
 Environment=PUB_DONATION_URL=https://donations.vert.sh
 Environment=PUB_STRIPE_KEY=pk_live_51RDVmAGSxPVad6bQwzVNnbc28nlmzA30krLWk1fefCMpUPiSRPkavMMbGqa8A3lUaOCMlsUEVy2CWDYg0ip3aPpL00ZJlsMkf2
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=true
-#DropCapability=all
-#AddCapability=CAP_NET_BIND_SERVICE
-#AddCapability=CAP_SETUID
-#AddCapability=CAP_SETGID
-#AddCapability=CAP_CHOWN
-#AddCapability=CAP_DAC_OVERRIDE
-
-# ---------- Temporary filesystems ----------
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
+NoNewPrivileges=true
+DropCapability=all
+AddCapability=CAP_NET_BIND_SERVICE
+AddCapability=CAP_SETUID
+AddCapability=CAP_SETGID
+AddCapability=CAP_CHOWN
+AddCapability=CAP_DAC_OVERRIDE
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
