@@ -7,30 +7,20 @@ ContainerName=tautulli
 Image=ghcr.io/tautulli/tautulli:latest
 AutoUpdate=registry
 HostName=tautulli
-
-# Share the Plex container's network stack (Tautulli will be accessible via Plex's IP and port)
 Network=container:plex
-
-# Environment
 Environment=TAUTULLI_HTTP_HOST=::
 Environment=TZ=America/New_York
 Environment=PUID=1000
 Environment=PGID=1000
-
-# Persistent config
 Volume=%h/plex/tautulli-config:/config:rw
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=yes
-#ReadOnly=yes
-#DropCapability=CAP_MKNOD
-#DropCapability=CAP_NET_RAW
-#DropCapability=CAP_AUDIT_WRITE
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Tmpfs=/tmp:size=1G,rw,mode=1777
-#Tmpfs=/var/tmp:size=512M,rw,mode=1777
-#Tmpfs=/dev/shm:size=1G,rw,mode=1777
+NoNewPrivileges=yes
+ReadOnly=yes
+DropCapability=CAP_MKNOD
+DropCapability=CAP_NET_RAW
+DropCapability=CAP_AUDIT_WRITE
+Tmpfs=/tmp:size=1G,rw,mode=1777
+Tmpfs=/var/tmp:size=512M,rw,mode=1777
+Tmpfs=/dev/shm:size=1G,rw,mode=1777
 
 [Service]
 Restart=on-failure
