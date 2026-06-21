@@ -9,55 +9,36 @@ Image=ghcr.io/paperless-ngx/paperless-ngx:latest
 ContainerName=paperless-webserver
 HostName=paperless-webserver
 AutoUpdate=registry
-
-# Port – web UI
 PublishPort=8000:8000
-
-# Environment
 Environment=PAPERLESS_TIME_ZONE=America/New_York
 Environment=TZ=America/New_York
-# Replace YOUR_HOSTNAME with your server's hostname or IP
 Environment=PAPERLESS_CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://YOUR_HOSTNAME:8000
 Environment=PAPERLESS_URL=http://YOUR_HOSTNAME:8000
 Environment=PAPERLESS_REDIS=redis://localhost:6379
-
-# Worker tuning
 Environment=PAPERLESS_TASK_WORKERS=2
 Environment=PAPERLESS_WEBSERVER_WORKERS=2
 Environment=PAPERLESS_THREADS_PER_WORKER=2
-
-# User mapping – keep host IDs for file ownership
 UserNS=keep-id
-
-# Volumes – persistent data
 Volume=%h/paperless/data:/usr/src/paperless/data
 Volume=%h/paperless/media:/usr/src/paperless/media
 Volume=%h/paperless/export:/usr/src/paperless/export
 Volume=%h/paperless/consume:/usr/src/paperless/consume
-
-# ---------- SELinux (uncomment if you have issues with label separation) ----------
 #SecurityLabelDisable=true
-
-# ---------- Hardening (uncomment to lock down) ----------
-#ReadOnly=true
-#NoNewPrivileges=true
-#DropCapability=all
-#AddCapability=CAP_CHOWN
-#AddCapability=CAP_DAC_OVERRIDE
-#AddCapability=CAP_FOWNER
-#AddCapability=CAP_SETGID
-#AddCapability=CAP_SETUID
-
-# ---------- Temporary filesystems (required if ReadOnly=true) ----------
-#Mount=type=tmpfs,destination=/run,tmpfs-size=64m,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=128m,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
-
-# ---------- Resource limits ----------
-#Memory=12G
-#CPUAccounting=yes
-#CPUShares=512
-#CPUQuota=600%
+ReadOnly=true
+NoNewPrivileges=true
+DropCapability=all
+AddCapability=CAP_CHOWN
+AddCapability=CAP_DAC_OVERRIDE
+AddCapability=CAP_FOWNER
+AddCapability=CAP_SETGID
+AddCapability=CAP_SETUID
+Mount=type=tmpfs,destination=/run,tmpfs-size=64m,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=128m,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+Memory=12G
+CPUAccounting=yes
+CPUShares=512
+CPUQuota=600%
 
 [Service]
 Restart=on-failure
