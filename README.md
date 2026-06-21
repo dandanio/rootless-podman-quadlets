@@ -16,15 +16,6 @@ Why this repo?
 *   Podman is gaining traction, and rootless mode is finally production‑ready for most workloads.
 *   There are good arguments on both sides for rootless vs. rootful mode. I am not advocating one position over the other. I offered these rootless Podmans for those interested in exploring rootless, as I have spent many hours ironing out the network and user id issues that come with rootless.
 
-* * *
-
-Repository structure
---------------------
-
-Each directory below contains a **Quadlet `.container` file** and optional notes.
-
-*   Hardening options (like `no-new-privileges`, `read-only` rootfs, `security-opt`) are **commented out** by default – uncomment what you need.
-*   Temporary drives (`tmpfs`, `:Z` volume flags) are also commented out for clarity but should be strongly considered with containers with frequent HDD/SSD read/writes and must be uncommented if using `ReadOnly`.
    
 * * *
 
@@ -85,7 +76,11 @@ Then pull the image (optional but gives you immediate feedback):
     podman pull <image-name>   
     # or let systemd pull it on start
 
-### 7\. Enable and start the container
+### 7\. Edit the container to fit your situation and needs
+
+I have given you the .container files that work on my system.  Everyone has different systems with different processors, memory, file layouts, etc.  If in doubt go back to the canonical source - the GitHub for the specific container - and read through the documentation. These containers will not work on everyone's setup without tweaking.
+
+### 8\. Enable and start the container
 
     systemctl --user start vert
 
