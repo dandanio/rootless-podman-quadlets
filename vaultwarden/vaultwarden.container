@@ -1,0 +1,18 @@
+[Unit]
+Description=Vaultwarden Container
+After=network-online.target
+
+[Container]
+ContainerName=vaultwarden
+Image=docker.io/vaultwarden/server:alpine
+Volume=%h/vaultwarden/data:/data:Z
+PublishPort=8080:80
+Environment=ROCKET_ADDRESS=::
+#Environment=ROCKET_ADDRESS=0.0.0.0
+NoNewPrivileges=yes
+  
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
