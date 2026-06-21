@@ -9,10 +9,7 @@ HostName=airspy
 Image=ghcr.io/sdr-enthusiasts/airspy_adsb:latest
 AutoUpdate=registry
 Network=adsb
-
-# Airspy USB device – required hardware
 AddDevice=/dev/bus/usb:/dev/bus/usb
-
 Environment=AIRSPY_ADSB_SAMPLE_RATE=20
 Environment=AIRSPY_ADSB_PREAMBLE_FILTER_MAX=60
 Environment=AIRSPY_ADSB_CPUTIME_TARGET=90
@@ -22,17 +19,11 @@ Environment=AIRSPY_ADSB_RSSI_MODE=snr
 Environment=AIRSPY_ADSB_STATS=true
 Environment=AIRSPY_ADSB_VERBOSE=true
 Environment=TZ=America/New_York
-
-# Stats volume (shared with ultrafeeder)
 Volume=airspy_stats:/run/airspy_adsb
-
-# ---------- Hardening (uncomment to lock down the container) ----------
-#NoNewPrivileges=true
-
-# ---------- Temporary filesystems ----------
-#Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=0755
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=16M,tmpfs-mode=1777
+NoNewPrivileges=true
+Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=0755
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=16M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
