@@ -10,6 +10,3 @@ Use only on a trusted local network, or put it behind a reverse proxy with SSL.
 ## Socket path
 The container mounts `%t/podman/podman.sock` (your user’s runtime dir) as `/var/run/docker.sock` read‑only.  
 No hardcoded user IDs.
-
-## Hardening
-Uncomment `NoNewPrivileges`, `ReadOnly`, `DropCapability=ALL`, and both `Mount=type=tmpfs` lines.
