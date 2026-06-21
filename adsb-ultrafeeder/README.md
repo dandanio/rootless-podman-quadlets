@@ -31,10 +31,6 @@ All containers run **rootless**, share an internal `adsb` network, and auto‑up
    Enable the services you need, e.g.:  
    `systemctl --user enable --now fr24.service opensky.service pfclient.service ...`
 
-## Hardening
-All containers have hardening options **commented out**.  
-Uncomment the blocks labelled “Hardening” and “Temporary filesystems” when you’re ready to lock down each service.
-
 ## Notes
 - If you don’t use Airspy or dump978, edit `ultrafeeder.container` and remove the `READSB_NET_CONNECTOR` line or change it to match your data source.
 - Logs: `journalctl --user -u ultrafeeder`
