@@ -66,11 +66,6 @@ Optional Components Setup
     # Edit optional/immich-public-proxy.container and set PUBLIC_BASE_URL and IMMICH_URL
     systemctl --user enable --now immich-public-proxy.service
 
-Hardening
----------
-
-All security directives are commented out. Uncomment the blocks labeled “Hardening” and the corresponding tmpfs mounts to lock down each container. Resource limits are also commented out; adjust to your system’s capacity.
-
 Volumes
 -------
 
@@ -82,7 +77,7 @@ Volumes
 GPU Support
 -----------
 
-The server and machine-learning containers can use Intel QuickSync. Uncomment the `AddDevice=/dev/dri` and `GroupAdd=keep-groups` lines if you have an Intel GPU. For NVIDIA, use the appropriate CDI device.
+The server and machine-learning containers use Intel QuickSync.  For NVIDIA, use the appropriate CDI device.
 
 Notes
 -----
