@@ -7,11 +7,7 @@ Image=docker.io/ttlequals0/minuspod:cpu
 ContainerName=minuspod
 HostName=minuspod
 AutoUpdate=registry
-
-# Port – main web UI and API
-PublishPort=9998:8000
-
-# Environment – non‑secret settings
+PublishPort=8000:8000
 Environment=TZ=America/New_York
 Environment="GUNICORN_BIND=[::]:8000"
 Environment=OPENAI_MODEL=openrouter/free
@@ -19,20 +15,12 @@ Environment=LLM_PROVIDER=openrouter
 Environment=OMP_NUM_THREADS=4
 Environment=OMP_PLACES=cores
 Environment=OMP_PROC_BIND=close
-
-# Secrets – loaded from env file (passphrase, API key, base URL)
 EnvironmentFile=%h/.config/containers/systemd/minuspod.env
-
-# Persistent data
 Volume=%h/minuspod/data:/app/data:Z
-
-# ---------- Hardening (uncomment to lock down) ----------
-#NoNewPrivileges=true
-
-# ---------- Temporary filesystems ----------
-#Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/tmp,tmpfs-size=1G,tmpfs-mode=1777
-#Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
+NoNewPrivileges=true
+Mount=type=tmpfs,destination=/run,tmpfs-size=64M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=1G,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/log,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
