@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenVINO Model Server (Whisper API) – Optional
+Description=OpenVINO Model Server (Whisper API)
 Wants=podman-user-wait-network-online.service
 After=podman-user-wait-network-online.service
 Requires=minuspod.service
@@ -13,18 +13,17 @@ Network=container:minuspod
 User=0:0
 Annotation=run.oci.keep_original_groups=1
 AddDevice=/dev/dri:/dev/dri
-Volume=%h/openvino/models:/models:rw
+Volume=%h/openvino/models:/models:ro
 Exec=--config_path /models/config.json --rest_port 8001
 Environment=TZ=America/New_York
 AutoUpdate=registry
 NoNewPrivileges=yes
-CPUQuota=300%
-MemoryMax=4G
-MemoryReservation=2G
 
 [Service]
 Restart=on-failure
-ExecStartPre=/usr/bin/sleep 5
+CPUQuota=300%
+MemoryMax=4G
+MemoryReservation=2G
 
 [Install]
 WantedBy=default.target
