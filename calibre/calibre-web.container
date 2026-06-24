@@ -5,7 +5,7 @@ After=calibre-gui.service
 [Container]
 ContainerName=calibre-web
 HostName=calibre-web
-Image=lscr.io/linuxserver/calibre-web:latest
+Image=ghcr.io/linuxserver/calibre-web:latest
 AutoUpdate=registry
 PublishPort=8091:8083
 Environment=TZ=America/New_York
