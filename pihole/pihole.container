@@ -67,6 +67,8 @@ AddCapability=SYS_NICE
 NoNewPrivileges=false
 # NoNewPrivileges must stay false: FTL drops its own privileges internally at startup.
 
+AutoUpdate=registry
+
 [Service]
 # Lower the unprivileged port floor so rootless Podman can bind port 53.
 # Requires sudo without a password for sysctl — add to /etc/sudoers.d/pihole-sysctl:
