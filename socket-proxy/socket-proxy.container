@@ -4,7 +4,7 @@ After=podman-user-wait-network-online.service
 Wants=podman-user-wait-network-online.service
 
 [Container]
-Image=lscr.io/linuxserver/socket-proxy:latest
+Image=ghcr.io/linuxserver/socket-proxy:latest
 ContainerName=podman-proxy
 HostName=podman-proxy
 AutoUpdate=registry
