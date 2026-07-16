@@ -8,7 +8,6 @@ ContainerName=tdarr-node
 HostName=tdarr-node
 Image=ghcr.io/haveagitgat/tdarr_node:latest
 AutoUpdate=registry
-PublishPort=[::]:8267:8267
 AddDevice=/dev/dri:/dev/dri:rw
 Environment=TZ=America/New_York
 Environment=nodeName=your-node-name
