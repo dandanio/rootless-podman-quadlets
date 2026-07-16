@@ -1,0 +1,39 @@
+[Unit]
+Description=PixelProbe Celery worker (media scanning)
+After=pixelprobe-database.service pixelprobe-redis.service
+Requires=pixelprobe-database.service pixelprobe-redis.service
+
+[Container]
+Image=docker.io/ttlequals0/pixelprobe:latest
+ContainerName=pixelprobe-celery
+HostName=pixelprobe-celery
+Network=pixel.network
+UserNS=keep-id:uid=1000,gid=1000
+User=1000
+Group=1000
+WorkingDir=/app
+Exec=celery -A celery_worker worker --loglevel=info --concurrency=8
+EnvironmentFile=%h/.config/containers/systemd/pixelprobe.env
+Environment=POSTGRES_HOST=pixelprobe-database
+Environment=POSTGRES_PORT=5432
+Environment=POSTGRES_DB=pixelprobe
+Environment=POSTGRES_USER=pixelprobe
+Environment=REDIS_HOST=pixelprobe-redis
+Environment=REDIS_PORT=6379
+Environment=CELERY_BROKER_URL=redis://pixelprobe-redis:6379/0
+Environment=CELERY_RESULT_BACKEND=redis://pixelprobe-redis:6379/0
+# see pixel probe readme.md to adjust
+Environment=CELERY_WORKERS=8
+Environment=TZ=America/New_York
+AutoUpdate=registry
+Volume=%h/Videos:/media:ro
+Tmpfs=/tmp:size=2G
+
+[Service]
+Restart=on-failure
+CPUQuota=800%
+MemoryMax=8G
+MemoryLow=4G
+
+[Install]
+WantedBy=default.target
