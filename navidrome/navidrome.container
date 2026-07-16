@@ -1,0 +1,26 @@
+[Unit]
+Description=Navidrome Media Server (Rootless)
+After=podman-user-wait-network-online.service
+Wants=podman-user-wait-network-online.service 
+
+[Container]
+Image=docker.io/deluan/navidrome:latest
+ContainerName=navidrome
+HostName=navidrome
+Environment=ND_SCANSCHEDULE=@every 1h
+Environment=ND_LOGLEVEL=info
+Environment=TZ=America/New_York
+Volume=%h/Videos/music:/music:ro
+Volume=%h/navidrome-data:/data
+PublishPort=4533:4533
+AutoUpdate=registry
+NoNewPrivileges=true
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
