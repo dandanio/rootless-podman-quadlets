@@ -13,6 +13,10 @@ Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=America/New_York
 AutoUpdate=registry
+NoNewPrivileges=true
+Mount=type=tmpfs,destination=/tmp,tmpfs-size=512M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/run,tmpfs-size=16M,tmpfs-mode=1777
+Mount=type=tmpfs,destination=/var/cache/nginx,tmpfs-size=64M,tmpfs-mode=1777
 
 [Service]
 Restart=on-failure
