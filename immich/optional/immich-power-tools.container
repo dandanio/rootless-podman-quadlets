@@ -1,0 +1,23 @@
+[Unit]
+Description=Immich Power Tools Service
+After=podman-user-wait-network-online.service
+Wants=podman-user-wait-network-online.service 
+
+[Container]
+ContainerName=immich-power-tools
+HostName=immich-power-tools
+Network=immich.network
+Image=ghcr.io/immich-power-tools/immich-power-tools:latest
+PublishPort=8001:3000
+Environment=HOSTNAME=::
+Environment=TimeZone=America/New_York
+Volume=%h/immich-app/immich-power-tools-data:/app/data:z
+EnvironmentFile=%h/.config/containers/systemd/immich-power-tools.env
+AutoUpdate=registry
+UserNS=keep-id
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
